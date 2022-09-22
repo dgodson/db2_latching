@@ -1,7 +1,7 @@
-#List top 10 SQL with highest average latch wait time
-#SQL
+# List top 10 SQL with highest average latch wait time
+# SQL
 select substr(stmt_text,1,50) as stmt_text,decimal(float(total_extended_latch_wait_time)/num_executions,10,5)as avg_latch_time from table(mon_get_pkg_cache_stmt(null,null,null,null)) where num_executions > 0 order by avg_latch_time desc fetch first 10 rows only
-#CMD LINE
+# CMD LINE
 db2 "select substr(stmt_text,1,50) as stmt_text,decimal(float(total_extended_latch_wait_time)/num_executions,10,5)as avg_latch_time from table(mon_get_pkg_cache_stmt(null,null,null,null)) where num_executions > 0 order by avg_latch_time desc fetch first 10 rows only"
 
 # List all SQL ordered by TOTAL_EXTENDED_LATCH_WAIT_TIME
